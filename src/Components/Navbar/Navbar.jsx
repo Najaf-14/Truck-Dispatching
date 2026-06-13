@@ -5,7 +5,7 @@ import './Navbar.css';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  console.log(location.pathname)
+  // console.log(location.pathname)
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location]);
