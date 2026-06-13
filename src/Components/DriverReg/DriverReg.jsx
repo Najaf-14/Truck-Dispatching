@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './DriverReg.css';
 
 const DriverReg = () => {
@@ -74,7 +74,8 @@ const DriverReg = () => {
     setFormStatus({ submitted: false, loading: true, error: null, showTermsError: false });
 
     try {
-      // TODO: Replace with your actual API endpoint when backend is ready
+      // Submit logic is currently simulated for the front-end demo.
+      // Replace this with the real backend endpoint when the API is ready.
       // const response = await fetch('/api/driver/register', {
       //   method: 'POST',
       //   headers: { 'Content-Type': application/json' },
@@ -104,7 +105,7 @@ const DriverReg = () => {
       setTimeout(() => {
         setFormStatus(prev => ({ ...prev, submitted: false }));
       }, 5000);
-    } catch (error) {
+    } catch {
       setFormStatus({ submitted: false, loading: false, error: 'Something went wrong. Please try again.', showTermsError: false });
     }
   };
@@ -308,9 +309,9 @@ const DriverReg = () => {
             </div>
 
             <div className="terms-container">
-              <a href="#" className="terms-link" onClick={toggleTerms}>
+              <button type="button" className="terms-link" onClick={toggleTerms}>
                 &#128220; View Terms & Conditions
-              </a>
+              </button>
               <div className={`terms-dropdown ${showTerms ? 'show' : ''}`}>
                 <h3>1. Acceptance of Terms</h3>
                 <p>By registering as a driver with Loadify, you agree to comply with these Terms & Conditions.</p>

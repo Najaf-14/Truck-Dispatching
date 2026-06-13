@@ -1,6 +1,4 @@
-import React from 'react';
 import './Parallax.css';
-import TruckImage from '../../assets/images/Truck1.jpg';
 
 const Parallax = () => {
   const handleGetStarted = (e) => {

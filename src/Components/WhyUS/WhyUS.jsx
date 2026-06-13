@@ -1,4 +1,3 @@
-import React from 'react';
 import './WhyUS.css';
 
 const WhyChooseUs = () => {

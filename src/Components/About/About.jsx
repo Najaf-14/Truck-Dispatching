@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './About.css';
 import TruckImage from '../../assets/images/Truck2.jpg';
 
@@ -43,9 +43,9 @@ const About = () => {
               trucks moving and your business scaling smoothly.
             </p>
 
-            <a className="btn" id="learnBtn" onClick={toggleLearnMore}>
+            <button type="button" className="btn" id="learnBtn" onClick={toggleLearnMore}>
               {showMore ? 'Show Less' : 'Learn More'}
-            </a>
+            </button>
           </div>
           <div className="about-img">
             <img src={TruckImage} alt="Truck Image" />

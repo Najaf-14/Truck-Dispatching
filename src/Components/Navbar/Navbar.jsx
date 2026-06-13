@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  // console.log(location.pathname)
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location]);
+
+  const closeMenu = () => setIsMenuOpen(false);
 
   const handleSmoothScroll = (e, targetId) => {
     if (location.pathname === '/') {
@@ -49,6 +47,7 @@ const Navbar = () => {
             <Link 
               to="/"
               onClick={(e) => {
+                closeMenu();
                 if (location.pathname === '/') {
                   e.preventDefault();
                   handleSmoothScroll(e, 'home');
@@ -63,6 +62,7 @@ const Navbar = () => {
             <Link 
               to="/#about"
               onClick={(e) => {
+                closeMenu();
                 if (location.pathname === '/') {
                   e.preventDefault();
                   handleSmoothScroll(e, 'about');
@@ -76,6 +76,7 @@ const Navbar = () => {
           <li>
             <NavLink 
               to="/services"
+              onClick={closeMenu}
               className={({ isActive }) => isActive ? 'active' : ''}
             >
               Service
@@ -84,6 +85,7 @@ const Navbar = () => {
           <li>
             <NavLink 
               to="/pricing"
+              onClick={closeMenu}
               className={({ isActive }) => isActive ? 'active' : ''}
             >
               Pricing Plans
@@ -92,6 +94,7 @@ const Navbar = () => {
           <li>
             <NavLink 
               to="/contact"
+              onClick={closeMenu}
               className={({ isActive }) => isActive ? 'active' : ''}
             >
               Contact Us
@@ -100,6 +103,7 @@ const Navbar = () => {
           <li>
             <NavLink 
               to="/driver"
+              onClick={closeMenu}
               className={({ isActive }) => isActive ? 'active' : ''}
             >
               Driver Registration

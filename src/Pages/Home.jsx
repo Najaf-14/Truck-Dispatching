@@ -1,4 +1,3 @@
-import React from 'react'
 import Navbar from '../Components/Navbar/Navbar'
 import Parallax from '../Components/Parallax/Parallax'
 import About from '../Components/About/About'

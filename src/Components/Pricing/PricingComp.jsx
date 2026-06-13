@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import './PricingComp.css';
 
@@ -84,19 +83,6 @@ const PricingComp = () => {
       answer: 'Simply click "Get Started" and fill out our driver registration form.'
     }
   ];
-
-  const handleSmoothScroll = (e, targetId) => {
-    if (targetId) {
-      e.preventDefault();
-      const element = document.getElementById(targetId);
-      if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-      }
-    }
-  };
 
   return (
     <>

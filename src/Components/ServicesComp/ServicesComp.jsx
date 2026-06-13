@@ -1,5 +1,4 @@
 // ? Services Component for Services Page
-import React from 'react';
 import { Link } from 'react-router-dom';
 import './ServicesComp.css';
 

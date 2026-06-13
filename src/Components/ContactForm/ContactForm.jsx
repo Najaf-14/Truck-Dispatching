@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './ContactForm.css';
 
@@ -84,7 +84,8 @@ const ContactForm = () => {
     setFormStatus({ submitted: false, loading: true, error: null });
 
     try {
-      // TODO: Replace with your actual API endpoint when backend is ready
+      // Submit logic is currently simulated for the front-end demo.
+      // Replace this with the real backend endpoint when the API is ready.
       // const response = await fetch('/api/contact', {
       //   method: 'POST',
       //   headers: { 'Content-Type': 'application/json' },
@@ -100,7 +101,7 @@ const ContactForm = () => {
       setTimeout(() => {
         setFormStatus(prev => ({ ...prev, submitted: false }));
       }, 5000);
-    } catch (error) {
+    } catch {
       setFormStatus({ submitted: false, loading: false, error: 'Something went wrong. Please try again.' });
     }
   };
