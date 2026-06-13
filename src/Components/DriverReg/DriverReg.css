@@ -1,0 +1,354 @@
+.driver-hero {
+  background: linear-gradient(115deg, #071732 0%, #0f2c57 100%);
+  color: white;
+  text-align: center;
+  padding: 80px 24px;
+}
+
+.driver-hero h1 {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.driver-hero h1 span {
+  color: #ff7a00;
+}
+
+.driver-hero p {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.registration-section {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+}
+
+.form-container {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.form-header h2 {
+  color: #0a1f44;
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.form-header p {
+  color: #666;
+}
+
+.section-title {
+  color: #0a1f44;
+  font-size: 20px;
+  margin: 24px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #ff7a00;
+  display: inline-block;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #ff7a00;
+  box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.1);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.checkbox-group input {
+  width: auto;
+}
+
+/* Terms Dropdown Styles */
+.terms-container {
+  margin: 20px 0;
+}
+
+.terms-link {
+  color: #ff7a00;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.terms-link:hover {
+  text-decoration: underline;
+}
+
+.terms-dropdown {
+  display: none;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.terms-dropdown.show {
+  display: block;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.terms-dropdown h3 {
+  color: #0a1f44;
+  margin: 16px 0 8px;
+  font-size: 16px;
+}
+
+.terms-dropdown h3:first-child {
+  margin-top: 0;
+}
+
+.terms-dropdown p {
+  color: #555;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.terms-dropdown ul {
+  margin: 8px 0 16px 20px;
+  color: #555;
+  font-size: 13px;
+}
+
+.terms-dropdown ul li {
+  margin: 6px 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: normal;
+  margin-top: 16px;
+}
+
+.checkbox-label input {
+  width: auto;
+}
+
+.submit-btn {
+  width: 100%;
+  background: #ff7a00;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 16px;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #0a1f44;
+  transform: translateY(-2px);
+}
+
+.submit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.success-message {
+  background: #d4edda;
+  color: #155724;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 16px;
+}
+
+.benefits-sidebar {
+  background: linear-gradient(135deg, #0a1f44 0%, #0f2c57 100%);
+  border-radius: 20px;
+  padding: 40px;
+  color: white;
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+}
+
+.benefits-sidebar h3 {
+  font-size: 24px;
+  margin-bottom: 24px;
+  color: #ff7a00;
+}
+
+.benefits-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+}
+
+.benefits-sidebar ul li {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 15px;
+}
+
+.benefits-note {
+  background: rgba(255, 122, 0, 0.15);
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.benefits-note p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.benefits-note strong {
+  color: #ff7a00;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: 8px;
+  display: none;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.error-message.show {
+  display: block;
+}
+
+/*! Responsive Design */
+@media (max-width: 900px) {
+  .registration-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .benefits-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .driver-hero {
+    padding: 50px 20px;
+  }
+
+  .driver-hero h1 {
+    font-size: 32px;
+  }
+  
+  .driver-hero p {
+    font-size: 16px;
+  }
+
+  .registration-section {
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
+  .form-container {
+    padding: 24px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .checkbox-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-header h2 {
+    font-size: 24px;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+
+  .benefits-sidebar {
+    padding: 24px;
+  }
+
+  .benefits-sidebar h3 {
+    font-size: 20px;
+  }
+}
