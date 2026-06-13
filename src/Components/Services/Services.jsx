@@ -6,25 +6,25 @@ const Services = () => {
   const servicesData = [
     {
       id: 1,
-      icon: '🚛',
+      icon: String.fromCodePoint(0x1F69B),
       title: 'Load Finding',
       description: 'We source high-paying loads that match your truck type, location and schedule so you\'re never running empty.'
     },
     {
       id: 2,
-      icon: '📍',
+      icon: String.fromCodePoint(0x1F53D),
       title: 'Route Optimization',
       description: 'We plan the most efficient routes to save fuel, reduce delays and maximize your earnings per mile.'
     },
     {
       id: 3,
-      icon: '📞',
+      icon: String.fromCodePoint(0x1F4DE),
       title: '24/7 Dispatch Support',
       description: 'Round-the-clock support from experienced dispatchers who handle all broker communication on your behalf.'
     },
     {
       id: 4,
-      icon: '📄',
+      icon: String.fromCodePoint(0x1F4C4),
       title: 'Paperwork & Docs',
       description: 'We handle rate confirmations, BOLs and invoicing so you can focus on driving instead of paperwork.'
     }

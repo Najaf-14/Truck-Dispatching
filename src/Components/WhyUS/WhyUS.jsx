@@ -5,37 +5,37 @@ const WhyChooseUs = () => {
   const reasonsData = [
     {
       id: 1,
-      icon: '🧠',
+      icon: String.fromCodePoint(0x1F9E0),
       title: 'Experienced Dispatchers',
       description: 'Our team has years of hands-on experience in trucking logistics, ensuring smart decisions every mile.'
     },
     {
       id: 2,
-      icon: '⚡',
+      icon: String.fromCodePoint(0x26A1),
       title: 'Fast Load Booking',
       description: 'We book loads rapidly so your truck never sits idle keeping your revenue flowing 24/7.'
     },
     {
       id: 3,
-      icon: '📞',
+      icon: String.fromCodePoint(0x1F4DE),
       title: '24/7 Support',
       description: 'Our dispatchers are always on standby. Any time, any issue we\'re just a call or message away.'
     },
     {
       id: 4,
-      icon: '💰',
+      icon: String.fromCodePoint(0x1F4B0),
       title: 'Transparent Pricing',
       description: 'Flat rates and clear percentage plans with no surprise fees you always know what you\'re paying.'
     },
     {
       id: 5,
-      icon: '🚫',
+      icon: String.fromCodePoint(0x1F6AB),
       title: 'No Hidden Charges',
       description: 'What you see is what you pay. No setup fees, no cancellation traps, no fine print to worry about.'
     },
     {
       id: 6,
-      icon: '📈',
+      icon: String.fromCodePoint(0x1F4B8),
       title: 'Revenue Focused',
       description: 'We negotiate the best rates and optimize every route to maximize your earnings per mile.'
     }
