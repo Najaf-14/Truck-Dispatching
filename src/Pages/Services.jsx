@@ -1,8 +1,15 @@
 import React from 'react'
+import ServicesComp from '../Components/ServicesComp/Services'
+import Navbar from '../Components/Navbar/Navbar'
+import Footer from '../Components/Footer/Footer'
 
 function Services() {
   return (
-    <div>Services</div>
+    <>
+      <Navbar />
+      <ServicesComp />
+      <Footer />
+    </>
   )
 }
 
