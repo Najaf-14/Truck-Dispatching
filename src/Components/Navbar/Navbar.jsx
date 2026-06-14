@@ -109,6 +109,24 @@ const Navbar = () => {
               Driver Registration
             </NavLink>
           </li>
+          <li>
+            <NavLink 
+              to="/login"
+              onClick={closeMenu}
+              className={({ isActive }) => isActive ? 'active' : ''}
+            >
+              Login
+            </NavLink>
+          </li>
+          <li>
+            <NavLink 
+              to="/signup"
+              onClick={closeMenu}
+              className={({ isActive }) => isActive ? 'active' : ''}
+            >
+              Signup
+            </NavLink>
+          </li>
         </ul>
       </div>
     </header>
