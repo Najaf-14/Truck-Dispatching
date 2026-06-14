@@ -5,6 +5,8 @@ import Services from '../Pages/Services'
 import Contact from '../Pages/Contact'
 import Driver from '../Pages/Driver'
 import NotFound from '../Pages/NotFound'
+import Login from '../Pages/Login'
+import Signup from '../Pages/Signup'
 
 function AppRoutes() {
   return (
@@ -14,6 +16,8 @@ function AppRoutes() {
         <Route path='/services' element={<Services />} />
         <Route path='/contact' element={<Contact />} /> 
         <Route path='/driver' element={<Driver />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
         <Route path='*' element={<NotFound />} />
     </Routes>
   )
