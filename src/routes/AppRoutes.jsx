@@ -11,8 +11,8 @@ import Admin from "../Pages/Admin";
 import Dashboard from "../Admin/Dashboard";
 import DriversAdmin from "../Admin/DriversAdmin";
 import TestimonialsAdmin from "../Admin/TestimonialsAdmin";
-
 import ProtectedRoute from "./ProtectedRoute";
+import ManageUsers from "../Admin/ManageUsers";
 
 function AppRoutes() {
   return (
@@ -43,6 +43,7 @@ function AppRoutes() {
         <Route index element={<Dashboard />} />
         <Route path="drivers" element={<DriversAdmin />} />
         <Route path="testimonials" element={<TestimonialsAdmin />} />
+        <Route path="manageUsers" element={<ManageUsers />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />
