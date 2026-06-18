@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./SignupComp.css";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function SignupComp() {
   const [fullName, setFullName] = useState("");
@@ -19,11 +20,16 @@ function SignupComp() {
     setLoading(true);
     setError("");
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      setLoading(false);
+    if (!email.trim()) {
+      toast.error("Email is required");
       return;
     }
+
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
     try {
       const res = await axios.post("http://localhost:5000/api/auth/signup", {
         fullName,
@@ -37,6 +43,7 @@ function SignupComp() {
       setPassword("");
       setConfirmPassword("");
 
+      toast.success("Account created successfully!");
       navigate("/login");
     } catch (e) {
       console.log("Error: ", e);
