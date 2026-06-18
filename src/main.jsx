@@ -4,6 +4,9 @@ import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 
+// sweetalert2
+import 'sweetalert2/src/sweetalert2.scss'
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
