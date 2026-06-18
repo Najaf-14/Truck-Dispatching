@@ -32,14 +32,14 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-  localStorage.removeItem("user");
-  localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
 
-  sessionStorage.clear();
-  
-  setOpenProfile(false);
-  navigate("/");
-};
+    sessionStorage.clear();
+
+    setOpenProfile(false);
+    navigate("/");
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -133,6 +133,18 @@ const Navbar = () => {
               Driver Registration
             </NavLink>
           </li>
+
+          {user?.role === "admin" && (
+            <li>
+              <NavLink
+                to="/admin"
+                onClick={closeMenu}
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Admin Dashboard
+              </NavLink>
+            </li>
+          )}
 
           {!user ? (
             <>
