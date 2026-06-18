@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-require ("dotenv").config();
+require("dotenv").config();
 
 const signup = async (req, res) => {
   try {
@@ -77,9 +77,9 @@ const login = async (req, res) => {
       },
       process.env.JWT_SECRET,
       {
-        expiresIn: "7d"
-      }
-    )
+        expiresIn: "7d",
+      },
+    );
 
     res.status(200).json({
       message: "Login Successful",
@@ -96,4 +96,50 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { signup, login };
+const manageUsers = async (req, res) => {
+  try {
+    const users = await User.find({}, "-password");
+
+    res.status(200).json({
+      message: "All Users",
+      length: users.length,
+      users,
+    });
+  } catch (e) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch users",
+      error: error.message,
+    });
+  }
+};
+
+const deleteUser = async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    await User.findByIdAndDelete(userId);
+
+    res.status(200).json({
+      success: true,
+      message: "User deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error deleting user",
+      error: error.message,
+    });
+  }
+};
+
+module.exports = { signup, login, manageUsers, deleteUser };
