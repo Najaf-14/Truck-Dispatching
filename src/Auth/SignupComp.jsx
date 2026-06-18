@@ -21,6 +21,7 @@ function SignupComp() {
 
     if (password !== confirmPassword) {
       setError("Passwords do not match");
+      setLoading(false);
       return;
     }
     try {
@@ -30,7 +31,6 @@ function SignupComp() {
         password,
         confirmPassword,
       });
-      // console.log(res)
 
       setFullName("");
       setEmail("");
@@ -57,60 +57,52 @@ function SignupComp() {
         {error && <div className="error-message">{error}</div>}
 
         <form onSubmit={handleSubmit} className="signup-form">
-          <div className="form-group">
-            <label htmlFor="name">Full Name *</label>
+          <div className="input-group">
             <input
+              id="fullName"
               type="text"
-              id="name"
               value={fullName}
-              onChange={(e) => {
-                setFullName(e.target.value);
-              }}
+              onChange={(e) => setFullName(e.target.value)}
               required
-              placeholder="Enter your full name"
+              placeholder=" "
             />
+            <label htmlFor="fullName">Full Name</label>
           </div>
 
-          <div className="form-group">
-            <label htmlFor="email">Email Address *</label>
+          <div className="input-group">
             <input
-              type="email"
               id="email"
+              type="email"
               value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
+              onChange={(e) => setEmail(e.target.value)}
               required
-              placeholder="Enter your email"
+              placeholder=" "
             />
+            <label htmlFor="email">Email Address</label>
           </div>
 
-          <div className="form-group">
-            <label htmlFor="password">Password *</label>
+          <div className="input-group">
             <input
-              type="password"
               id="password"
+              type="password"
               value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
+              onChange={(e) => setPassword(e.target.value)}
               required
-              placeholder="Create a password"
+              placeholder=" "
             />
+            <label htmlFor="password">Password</label>
           </div>
 
-          <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password *</label>
+          <div className="input-group">
             <input
-              type="password"
               id="confirmPassword"
+              type="password"
               value={confirmPassword}
-              onChange={(e) => {
-                setConfirmPassword(e.target.value);
-              }}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               required
-              placeholder="Confirm your password"
+              placeholder=" "
             />
+            <label htmlFor="confirmPassword">Confirm Password</label>
           </div>
 
           <button type="submit" className="signup-btn" disabled={loading}>
