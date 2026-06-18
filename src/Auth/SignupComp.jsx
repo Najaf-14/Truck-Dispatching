@@ -1,43 +1,49 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './SignupComp.css';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./SignupComp.css";
+import axios from "axios";
 
-function SignupComp(){
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
-  const [error, setError] = useState('');
+function SignupComp() {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value
-    });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-
-    if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
-      return;
-    }
 
     setLoading(true);
+    setError("");
 
-    // TODO: Connect to backend later
-    console.log('Signup:', formData);
-    
-    setTimeout(() => {
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+    try {
+      const res = await axios.post("http://localhost:5000/api/auth/signup", {
+        fullName,
+        email,
+        password,
+        confirmPassword,
+      });
+      // console.log(res)
+
+      setFullName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+
+      navigate("/login");
+    } catch (e) {
+      console.log("Error: ", e);
+      setError(e.response?.data?.message || "Something went wrong");
+    } finally {
       setLoading(false);
-      navigate('/login');
-    }, 1000);
+    }
   };
 
   return (
@@ -56,8 +62,10 @@ function SignupComp(){
             <input
               type="text"
               id="name"
-              value={formData.name}
-              onChange={handleChange}
+              value={fullName}
+              onChange={(e) => {
+                setFullName(e.target.value);
+              }}
               required
               placeholder="Enter your full name"
             />
@@ -68,8 +76,10 @@ function SignupComp(){
             <input
               type="email"
               id="email"
-              value={formData.email}
-              onChange={handleChange}
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
               required
               placeholder="Enter your email"
             />
@@ -80,8 +90,10 @@ function SignupComp(){
             <input
               type="password"
               id="password"
-              value={formData.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               required
               placeholder="Create a password"
             />
@@ -92,24 +104,28 @@ function SignupComp(){
             <input
               type="password"
               id="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
+              value={confirmPassword}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+              }}
               required
               placeholder="Confirm your password"
             />
           </div>
 
           <button type="submit" className="signup-btn" disabled={loading}>
-            {loading ? 'Creating Account...' : 'Sign Up'}
+            {loading ? "Creating Account..." : "Sign Up"}
           </button>
         </form>
 
         <div className="signup-footer">
-          <p>Already have an account? <Link to="/login">Login here</Link></p>
+          <p>
+            Already have an account? <Link to="/login">Login here</Link>
+          </p>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default SignupComp;

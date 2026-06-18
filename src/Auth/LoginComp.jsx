@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./LoginComp.css";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function LoginComp() {
   const [email, setEmail] = useState("");
@@ -14,13 +15,30 @@ function LoginComp() {
     setError("");
     setLoading(true);
 
-    // TODO: Connect to backend
-    console.log("Login: ", { email, password });
+    try {
+      const res = await axios.post("http://localhost:5000/api/auth/login", {
+        email,
+        password,
+      });
 
-    setTimeout(() => {
+      // saving token
+      localStorage.setItem("token", res.data.token);
+      
+      //saving user
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+
+      if (res.data.user.role === 'admin') {
+        navigate("/admin")
+      }
+      else{
+        navigate("/");
+      }
+    } catch (e) {
+      console.log("Error: ", e);
+      setError(e.response?.data?.message || "Something went wrong");
+    } finally {
       setLoading(false);
-      navigate("/")
-    }, 1000);
+    }
   };
 
   return (
@@ -60,7 +78,9 @@ function LoginComp() {
         </form>
 
         <div className="login-footer">
-          <p>Dont't have an account? <Link to="/signup">Sign up here</Link></p>
+          <p>
+            Dont't have an account? <Link to="/signup">Sign up here</Link>
+          </p>
         </div>
       </div>
     </div>

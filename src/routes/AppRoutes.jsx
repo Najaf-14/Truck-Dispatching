@@ -12,10 +12,19 @@ import Dashboard from "../Admin/Dashboard";
 import DriversAdmin from "../Admin/DriversAdmin";
 import TestimonialsAdmin from "../Admin/TestimonialsAdmin";
 
+import ProtectedRoute from "./ProtectedRoute";
+
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/pricing" element={<Pricing />} />
       <Route path="/services" element={<Services />} />
       <Route path="/contact" element={<Contact />} />
@@ -23,10 +32,17 @@ function AppRoutes() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
 
-      <Route path="/admin" element={<Admin />}>
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute role="admin">
+            <Admin />
+          </ProtectedRoute>
+        }
+      >
         <Route index element={<Dashboard />} />
-        <Route path="/admin/drivers" element={<DriversAdmin />} />
-        <Route path="/admin/testimonials" element={<TestimonialsAdmin />} />
+        <Route path="drivers" element={<DriversAdmin />} />
+        <Route path="testimonials" element={<TestimonialsAdmin />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />

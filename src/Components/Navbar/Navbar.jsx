@@ -6,6 +6,10 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
+  const userObj = localStorage.getItem("user");
+  const user= JSON.parse(userObj);
+  // console.log(user.fullName)
+
   const closeMenu = () => setIsMenuOpen(false);
 
   const handleSmoothScroll = (e, targetId) => {
@@ -127,6 +131,15 @@ const Navbar = () => {
               Signup
             </NavLink>
           </li>
+          {
+            user && (
+              <li className='username-display'>
+                <span className='username-text'>
+                  &#128100; {user.fullName}
+                </span>
+              </li>
+            )
+          }
         </ul>
       </div>
     </header>
