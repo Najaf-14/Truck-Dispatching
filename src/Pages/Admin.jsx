@@ -1,10 +1,14 @@
-import React from 'react'
-import AdminLayout from '../Admin/AdminLayout'
+import React from "react";
+import AdminLayout from "../Admin/AdminLayout";
+import Navbar from "../Components/Navbar/Navbar";
 
 function Admin() {
   return (
-    <AdminLayout />
-  )
+    <>
+      <Navbar />
+      <AdminLayout />
+    </>
+  );
 }
 
-export default Admin
+export default Admin;
