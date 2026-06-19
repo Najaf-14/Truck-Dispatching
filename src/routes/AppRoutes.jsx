@@ -13,6 +13,7 @@ import DriversAdmin from "../Admin/DriversAdmin";
 import TestimonialsAdmin from "../Admin/TestimonialsAdmin";
 import ProtectedRoute from "./ProtectedRoute";
 import ManageUsers from "../Admin/ManageUsers";
+import ContactMessage from "../Admin/ContactMessage"
 
 function AppRoutes() {
   return (
@@ -44,6 +45,7 @@ function AppRoutes() {
         <Route path="drivers" element={<DriversAdmin />} />
         <Route path="testimonials" element={<TestimonialsAdmin />} />
         <Route path="manageUsers" element={<ManageUsers />} />
+        <Route path="contactMessages" element={<ContactMessage />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />
