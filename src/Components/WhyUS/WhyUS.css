@@ -41,8 +41,8 @@
 
 .why-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
 }
 
 .why-card {
@@ -55,6 +55,8 @@
   gap: 14px;
   transition: 0.3s ease;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.07);
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .why-card:hover {
@@ -67,6 +69,7 @@
 .why-icon {
   width: 44px;
   height: 44px;
+  min-width: 44px;
   background: #0a1f44;
   border-radius: 10px;
   display: flex;
@@ -96,8 +99,6 @@
   margin: 0;
 }
 
-/*! Responsive Design */
-/*! Tablets */
 @media (max-width: 768px) {
   .section-wrap {
     padding: 40px 20px;
@@ -108,7 +109,7 @@
   }
 
   .why-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .section-header {
@@ -128,13 +129,8 @@
     width: 180px;
     margin: 0 auto 16px;
   }
-
-  .why-card {
-    text-align: left;
-  }
 }
 
-/*! Mobile */
 @media (max-width: 480px) {
   .section-wrap {
     padding: 30px 15px;
@@ -170,6 +166,7 @@
   .why-icon {
     width: 38px;
     height: 38px;
+    min-width: 38px;
     font-size: 18px;
   }
 
@@ -182,7 +179,6 @@
   }
 }
 
-/*! Small phones */
 @media (max-width: 380px) {
   .section-header h2 {
     font-size: 22px;

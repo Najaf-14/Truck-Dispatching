@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './ContactForm.css';
 
 const ContactForm = () => {
@@ -20,54 +19,27 @@ const ContactForm = () => {
   const contactInfo = [
     {
       id: 1,
-      icon: String.fromCodePoint(0x1F4CD), 
+      icon: String.fromCodePoint(0x1F4CD),
       title: 'Visit Us',
       details: ['123 Main Street,', 'Kamra, Pakistan']
     },
     {
       id: 2,
-      icon: String.fromCodePoint(0x1F4DE), 
+      icon: String.fromCodePoint(0x1F4DE),
       title: 'Call Us',
       details: ['+92 (123) 456-7890', '+92 (123) 456-7891']
     },
     {
       id: 3,
-      icon: String.fromCodePoint(0x2709), 
+      icon: String.fromCodePoint(0x2709),
       title: 'Email Us',
       details: ['info@loadify.com', 'support@loadify.com']
     },
     {
       id: 4,
-      icon: String.fromCodePoint(0x1F550), 
+      icon: String.fromCodePoint(0x1F550),
       title: 'Working Hours',
       details: ['Monday - Friday: 24/7', 'Saturday - Sunday: 24/7']
-    }
-  ];
-
-  const faqItems = [
-    {
-      id: 1,
-      icon: String.fromCodePoint(0x2753), 
-      question: 'How quickly do you respond to messages?',
-      answer: 'We typically respond within 2-4 hours during business days. For urgent matters, please call our 24/7 support line.'
-    },
-    {
-      id: 2,
-      icon: String.fromCodePoint(0x2753), 
-      question: 'Do you offer 24/7 support?',
-      answer: 'Yes! Our dispatch team is available 24/7 to assist with any urgent issues or load-related questions.'
-    },
-    {
-      id: 3,
-      icon: String.fromCodePoint(0x2753), 
-      question: 'Can I visit your office?',
-      answer: 'Absolutely! We welcome driver visits during working hours. Please call ahead to schedule an appointment.'
-    },
-    {
-      id: 4,
-      icon: String.fromCodePoint(0x2753), 
-      question: 'How do I become a registered driver?',
-      answer: 'Simply fill out our Driver Registration form and our team will contact you within 24 hours.'
     }
   ];
 
@@ -84,20 +56,10 @@ const ContactForm = () => {
     setFormStatus({ submitted: false, loading: true, error: null });
 
     try {
-      // Submit logic is currently simulated for the front-end demo.
-      // Replace this with the real backend endpoint when the API is ready.
-      // const response = await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData)
-      // });
-      
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
       setFormStatus({ submitted: true, loading: false, error: null });
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-      
+
       setTimeout(() => {
         setFormStatus(prev => ({ ...prev, submitted: false }));
       }, 5000);
@@ -206,7 +168,7 @@ const ContactForm = () => {
           {formStatus.error && (
             <div className="form-error">{formStatus.error}</div>
           )}
-          
+
           {formStatus.submitted && (
             <div className="form-success">Message sent successfully! We'll get back to you soon.</div>
           )}
@@ -230,32 +192,6 @@ const ContactForm = () => {
             loading="lazy"
             title="Loadify Location Map"
           ></iframe>
-        </div>
-      </section>
-
-      <section className="contact-faq">
-        <h2>Frequently Asked Questions</h2>
-        <div className="section-accent-ques"></div>
-        <div className="faq-grid">
-          {faqItems.map((item) => (
-            <div className="faq-item" key={item.id}>
-              <div className="faq-question">
-                <span>{item.icon}</span>
-                <h4>{item.question}</h4>
-              </div>
-              <div className="faq-answer">
-                <p>
-                  {item.answer}
-                  {item.id === 4 && (
-                    <>
-                      {' '}
-                      <Link to="/driver">Driver Registration form</Link>
-                    </>
-                  )}
-                </p>
-              </div>
-            </div>
-          ))}
         </div>
       </section>
     </>
