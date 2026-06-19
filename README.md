@@ -1,16 +1,109 @@
-# React + Vite
+# Truck Dispatching
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Truck Dispatching is a full-stack web application for managing a truck dispatching business. The frontend is built with React and Vite, and the backend is an Express API connected to MongoDB for authentication and admin user management.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Frontend: React, Vite, React Router, Axios
+- UI helpers: React Toastify, SweetAlert2
+- Backend: Node.js, Express, MongoDB, Mongoose, JWT, bcryptjs
+- Tooling: ESLint, Nodemon
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Public pages for home, pricing, services, contact, driver registration, login, and signup
+- Protected home route for authenticated users
+- Admin dashboard with user, driver, and testimonial management views
+- JWT-based authentication with role-based access control
+- MongoDB-backed user management endpoints for admin operations
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `src/` - React frontend
+  - `Pages/` - Page-level screens
+  - `Components/` - Reusable UI sections
+  - `Admin/` - Admin dashboard screens
+  - `Auth/` - Login and signup components
+  - `routes/` - Frontend routing
+- `Server/` - Express + MongoDB backend
+  - `App/controllers/` - Route controllers
+  - `App/middleware/` - Auth and role middleware
+  - `App/models/` - Mongoose models
+  - `config/` - Database connection
+  - `routes/` - API routes
+
+## Prerequisites
+
+- Node.js 18 or newer
+- MongoDB running locally or a MongoDB Atlas connection string
+
+## Setup
+
+Install dependencies for the frontend and backend:
+
+```bash
+# From the project root
+npm install
+
+# From the backend folder
+cd Server
+npm install
+```
+
+Start the backend API from the `Server` folder:
+
+```bash
+cd Server
+npm start
+```
+
+Start the frontend from the project root:
+
+```bash
+npm run dev
+```
+
+The frontend runs on `http://localhost:5173` by default, and the backend listens on the port defined in `Server/.env`.
+
+## Environment Variables
+
+Create a `Server/.env` file with:
+
+```env
+PORT=5000
+MONGO_URL=mongodb://localhost:27017/truck_dispatching
+JWT_SECRET=your_secret_key
+```
+
+`PORT` and `MONGO_URL` are required for the API to start successfully, and `JWT_SECRET` is used to sign auth tokens.
+
+## Available Scripts
+
+Frontend (`package.json`):
+
+```bash
+npm run dev      # Start the Vite dev server
+npm run build    # Build the production bundle
+npm run preview  # Preview the production build locally
+npm run lint     # Run ESLint
+```
+
+Backend (`Server/package.json`):
+
+```bash
+npm start        # Start the API with nodemon
+```
+
+## API Endpoints
+
+Base path: `/api/auth`
+
+- `POST /signup` - Create a new user
+- `POST /login` - Authenticate a user and return a JWT
+- `GET /admin/manageUsers` - List users, protected by auth and admin middleware
+- `DELETE /admin/user/:id` - Delete a user, protected by auth and admin middleware
+
+## Notes
+
+- The backend CORS configuration allows requests from `http://localhost:5173`.
+- The frontend uses protected routes for authenticated and admin-only sections.
