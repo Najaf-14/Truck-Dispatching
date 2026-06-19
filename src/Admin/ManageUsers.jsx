@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./ManageUsers.css";
-import { toast } from "react-toastify";
 
+import { toast } from "react-toastify";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
 function ManageUsers() {

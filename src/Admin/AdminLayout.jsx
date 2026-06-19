@@ -25,6 +25,10 @@ const AdminLayout = () => {
           <Link to="/admin/manageUsers" className="admin-nav-link">
             &#128101; Manage Users
           </Link>
+
+          <Link to="/admin/ContactMessages" className="admin-nav-link">
+            &#128233; Messages
+          </Link>
         </nav>
       </aside>
       <main className="admin-content">
