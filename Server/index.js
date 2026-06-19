@@ -1,27 +1,26 @@
-const express=require("express");
+const express = require("express");
 const connectDB = require("./config/db");
 require("dotenv").config();
-const cors=require("cors");
+const cors = require("cors");
 
-const app=express();
+const app = express();
 
-app.use(cors({
-  origin: "http://localhost:5173",
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  }),
+);
 
-app.use(express.json())
-app.use(express.urlencoded())
+app.use(express.json());
+app.use(express.urlencoded());
 
 connectDB();
 
-app.use("/api/auth", require("./routes/authRoutes"))
+app.use("/api/auth", require("./routes/authRoutes"));
 
-// Testing route
-app.get("/", (req, res)=>{
-    res.send("API....")
-})
+app.use("/api/contact", require("./routes/contactRoutes"));
 
-app.listen(process.env.PORT, ()=>{
-    console.log("Server running at port", process.env.PORT)
-})
+app.listen(process.env.PORT, () => {
+  console.log("Server running at port", process.env.PORT);
+});
