@@ -1,6 +1,6 @@
 # Truck Dispatching
 
-Truck Dispatching is a full-stack web application for managing a truck dispatching business. The frontend is built with React and Vite, and the backend is an Express API connected to MongoDB for authentication and admin user management.
+Truck Dispatching is a full-stack web application for managing a truck dispatching business. The frontend is built with React and Vite and the backend is an Express API connected to MongoDB for authentication and admin user management.
 
 ## Tech Stack
 
@@ -11,9 +11,9 @@ Truck Dispatching is a full-stack web application for managing a truck dispatchi
 
 ## Features
 
-- Public pages for home, pricing, services, contact, driver registration, login, and signup
+- Public pages for home, pricing, services, contact, driver registration, login and signup
 - Protected home route for authenticated users
-- Admin dashboard with user, driver, and testimonial management views
+- Admin dashboard with user, driver and testimonial management views
 - JWT-based authentication with role-based access control
 - MongoDB-backed user management endpoints for admin operations
 
@@ -63,7 +63,7 @@ Start the frontend from the project root:
 npm run dev
 ```
 
-The frontend runs on `http://localhost:5173` by default, and the backend listens on the port defined in `Server/.env`.
+The frontend runs on `http://localhost:5173` by default and the backend listens on the port defined in `Server/.env`.
 
 ## Environment Variables
 
@@ -75,7 +75,7 @@ MONGO_URL=mongodb://localhost:27017/truck_dispatching
 JWT_SECRET=your_secret_key
 ```
 
-`PORT` and `MONGO_URL` are required for the API to start successfully, and `JWT_SECRET` is used to sign auth tokens.
+`PORT` and `MONGO_URL` are required for the API to start successfully and `JWT_SECRET` is used to sign auth tokens.
 
 ## Available Scripts
 
