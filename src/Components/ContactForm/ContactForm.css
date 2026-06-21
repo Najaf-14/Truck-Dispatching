@@ -21,7 +21,6 @@
   margin: 0 auto;
 }
 
-/* Contact Info Cards */
 .contact-info {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -65,7 +64,6 @@
   margin: 5px 0;
 }
 
-/* Contact Form */
 .contact-form-container {
   background: white;
   border-radius: 20px;
@@ -156,7 +154,6 @@
   cursor: not-allowed;
 }
 
-/* Form Status Messages */
 .form-success {
   background: #d4edda;
   color: #155724;
@@ -175,7 +172,6 @@
   margin-top: 10px;
 }
 
-/* Map Section */
 .map-section {
   padding: 60px 24px;
   background: #f8f9fa;
@@ -209,7 +205,7 @@
   display: block;
 }
 
-/* Responsive */
+/*! Responsive Design*/
 @media (max-width: 900px) {
   .contact-info {
     grid-template-columns: repeat(2, 1fr);
