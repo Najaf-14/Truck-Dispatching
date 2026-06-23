@@ -1,21 +1,21 @@
-import { useState } from 'react';
-import './DriverReg.css';
+import { useState } from "react";
+import "./DriverReg.css";
+import axios from "axios";
 
 const DriverReg = () => {
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    truckType: '',
-    truckYear: '',
-    licensePlate: '',
-    mcNumber: '',
-    experience: '',
-    preferredRoutes: [],
-    homeTerminal: '',
-    notes: ''
+    fullName: "",
+    email: "",
+    phoneNo: "",
+    truckType: "",
+    truckYear: "",
+    licensePlate: "",
+    mcNo: "",
+    experience: "",
+    route: [],
+    homeTerminal: "",
+    info: "",
   });
-//   console.log(formData);
 
   const [showTerms, setShowTerms] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
@@ -23,29 +23,29 @@ const DriverReg = () => {
     submitted: false,
     loading: false,
     error: null,
-    showTermsError: false
+    showTermsError: false,
   });
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [id]: value
+      [id]: value,
     }));
   };
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
-    setFormData(prev => {
+    setFormData((prev) => {
       if (checked) {
         return {
           ...prev,
-          preferredRoutes: [...prev.preferredRoutes, value]
+          route: [...prev.route, value],
         };
       } else {
         return {
           ...prev,
-          preferredRoutes: prev.preferredRoutes.filter(route => route !== value)
+          route: prev.route.filter((route) => route !== value),
         };
       }
     });
@@ -54,7 +54,7 @@ const DriverReg = () => {
   const handleTermsCheckbox = (e) => {
     setTermsAccepted(e.target.checked);
     if (formStatus.showTermsError) {
-      setFormStatus(prev => ({ ...prev, showTermsError: false }));
+      setFormStatus((prev) => ({ ...prev, showTermsError: false }));
     }
   };
 
@@ -65,61 +65,71 @@ const DriverReg = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if terms are accepted
     if (!termsAccepted) {
-      setFormStatus(prev => ({ ...prev, showTermsError: true }));
+      setFormStatus((prev) => ({ ...prev, showTermsError: true }));
       return;
     }
 
-    setFormStatus({ submitted: false, loading: true, error: null, showTermsError: false });
+    setFormStatus({
+      submitted: false,
+      loading: true,
+      error: null,
+      showTermsError: false,
+    });
 
     try {
-      // Submit logic is currently simulated for the front-end demo.
-      // Replace this with the real backend endpoint when the API is ready.
-      // const response = await fetch('/api/driver/register', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': application/json' },
-      //   body: JSON.stringify(formData)
-      // });
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setFormStatus({ submitted: true, loading: false, error: null, showTermsError: false });
+      const response = await axios.post(
+        "http://localhost:5000/api/driverform/register",
+        formData,
+      );
+
+      setFormStatus({
+        submitted: true,
+        loading: false,
+        error: null,
+        showTermsError: false,
+      });
       setFormData({
-        fullName: '',
-        email: '',
-        phone: '',
-        truckType: '',
-        truckYear: '',
-        licensePlate: '',
-        mcNumber: '',
-        experience: '',
-        preferredRoutes: [],
-        homeTerminal: '',
-        notes: ''
+        fullName: "",
+        email: "",
+        phoneNo: "",
+        truckType: "",
+        truckYear: "",
+        licensePlate: "",
+        mcNo: "",
+        experience: "",
+        route: [],
+        homeTerminal: "",
+        info: "",
       });
       setTermsAccepted(false);
-      
-      // Reset success message after 5 seconds
+
       setTimeout(() => {
-        setFormStatus(prev => ({ ...prev, submitted: false }));
+        setFormStatus((prev) => ({ ...prev, submitted: false }));
       }, 5000);
-    } catch {
-      setFormStatus({ submitted: false, loading: false, error: 'Something went wrong. Please try again.', showTermsError: false });
+    } catch (error) {
+      setFormStatus({
+        submitted: false,
+        loading: false,
+        error: error.response?.data?.message || "Something went wrong...",
+        showTermsError: false,
+      });
     }
   };
 
   return (
     <>
-      {/* Hero Section */}
       <section className="driver-hero">
-        <h1>Join the <span>Loadify</span> Network</h1>
-        <p>Register your truck today and start getting consistent, high-paying loads</p>
+        <h1>
+          Join the <span>Loadify</span> Network
+        </h1>
+        <p>
+          Register your truck today and start getting consistent, high-paying
+          loads
+        </p>
       </section>
 
       <section className="registration-section">
-        {/* Form Container */}
         <div className="form-container">
           <div className="form-header">
             <h2>Driver Registration</h2>
@@ -154,14 +164,14 @@ const DriverReg = () => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="phone">Phone Number *</label>
+                <label htmlFor="phoneNo">PhoneNo Number *</label>
                 <input
                   type="tel"
-                  id="phone"
-                  name="phone"
+                  id="phoneNo"
+                  name="phoneNo"
                   required
                   placeholder="+92 XXX XXXXXXX"
-                  value={formData.phone}
+                  value={formData.phoneNo}
                   onChange={handleInputChange}
                 />
               </div>
@@ -215,14 +225,14 @@ const DriverReg = () => {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="mcNumber">MC Number *</label>
+                <label htmlFor="mcNo">MC Number *</label>
                 <input
                   type="text"
-                  id="mcNumber"
-                  name="mcNumber"
+                  id="mcNo"
+                  name="mcNo"
                   required
                   placeholder="MC-XXXXXX"
-                  value={formData.mcNumber}
+                  value={formData.mcNo}
                   onChange={handleInputChange}
                 />
               </div>
@@ -256,27 +266,30 @@ const DriverReg = () => {
                     type="checkbox"
                     name="routes"
                     value="local"
-                    checked={formData.preferredRoutes.includes('local')}
+                    checked={formData.route.includes("local")}
                     onChange={handleCheckboxChange}
-                  /> Local (within city)
+                  />{" "}
+                  Local (within city)
                 </label>
                 <label>
                   <input
                     type="checkbox"
                     name="routes"
                     value="regional"
-                    checked={formData.preferredRoutes.includes('regional')}
+                    checked={formData.route.includes("regional")}
                     onChange={handleCheckboxChange}
-                  /> Regional (within province)
+                  />{" "}
+                  Regional (within province)
                 </label>
                 <label>
                   <input
                     type="checkbox"
                     name="routes"
                     value="national"
-                    checked={formData.preferredRoutes.includes('national')}
+                    checked={formData.route.includes("national")}
                     onChange={handleCheckboxChange}
-                  /> National (across Pakistan)
+                  />{" "}
+                  National (across Pakistan)
                 </label>
               </div>
             </div>
@@ -297,27 +310,37 @@ const DriverReg = () => {
             <h3 className="section-title">Additional Information</h3>
 
             <div className="form-group">
-              <label htmlFor="notes">Additional Notes (Optional)</label>
+              <label htmlFor="info">Additional info (Optional)</label>
               <textarea
-                id="notes"
-                name="notes"
+                id="info"
+                name="info"
                 rows="4"
                 placeholder="Any special requirements or information..."
-                value={formData.notes}
+                value={formData.info}
                 onChange={handleInputChange}
               ></textarea>
             </div>
 
             <div className="terms-container">
-              <button type="button" className="terms-link" onClick={toggleTerms}>
+              <button
+                type="button"
+                className="terms-link"
+                onClick={toggleTerms}
+              >
                 &#128220; View Terms & Conditions
               </button>
-              <div className={`terms-dropdown ${showTerms ? 'show' : ''}`}>
+              <div className={`terms-dropdown ${showTerms ? "show" : ""}`}>
                 <h3>1. Acceptance of Terms</h3>
-                <p>By registering as a driver with Loadify, you agree to comply with these Terms & Conditions.</p>
+                <p>
+                  By registering as a driver with Loadify, you agree to comply
+                  with these Terms & Conditions.
+                </p>
 
                 <h3>2. Services Provided</h3>
-                <p>Loadify provides dispatching services including load finding, rate negotiation, route optimization and payment processing.</p>
+                <p>
+                  Loadify provides dispatching services including load finding,
+                  rate negotiation, route optimization and payment processing.
+                </p>
 
                 <h3>3. Driver Responsibilities</h3>
                 <ul>
@@ -328,16 +351,28 @@ const DriverReg = () => {
                 </ul>
 
                 <h3>4. Payment Terms</h3>
-                <p>Loadify charges a commission fee of 8-12% per load. Payments are processed within 7-14 business days.</p>
+                <p>
+                  Loadify charges a commission fee of 8-12% per load. Payments
+                  are processed within 7-14 business days.
+                </p>
 
                 <h3>5. Termination</h3>
-                <p>Either party may terminate this agreement with 7 days written notice.</p>
+                <p>
+                  Either party may terminate this agreement with 7 days written
+                  notice.
+                </p>
 
                 <h3>6. Limitation of Liability</h3>
-                <p>Loadify is not liable for lost revenue, delays caused by brokers, or mechanical issues.</p>
+                <p>
+                  Loadify is not liable for lost revenue, delays caused by
+                  brokers, or mechanical issues.
+                </p>
 
                 <h3>7. Privacy Policy</h3>
-                <p>Your personal information will be used solely for dispatching purposes.</p>
+                <p>
+                  Your personal information will be used solely for dispatching
+                  purposes.
+                </p>
 
                 <h3>8. Governing Law</h3>
                 <p>These terms are governed by the laws of Pakistan.</p>
@@ -351,22 +386,34 @@ const DriverReg = () => {
                 checked={termsAccepted}
                 onChange={handleTermsCheckbox}
               />
-              <span>I have read and agree to the <strong>Terms & Conditions</strong> *</span>
+              <span>
+                I have read and agree to the <strong>Terms & Conditions</strong>{" "}
+                *
+              </span>
             </div>
 
-            <div className={`error-message ${formStatus.showTermsError ? 'show' : ''}`}>
-              &#9989; Please accept the Terms & Conditions to register
+            <div
+              className={`error-message ${formStatus.showTermsError ? "show" : ""}`}
+            >
+              &#x26A0; Please accept the Terms & Conditions to register
             </div>
 
             {formStatus.error && (
-              <div className="error-message show" style={{ backgroundColor: '#f8d7da', color: '#721c24' }}>
-                &#9989; {formStatus.error}
+              <div
+                className="error-message show"
+                style={{
+                  backgroundColor: "#f8d7da",
+                  color: "#721c24",
+                  border: "1px solid #f5c6cb",
+                }}
+              >
+                ⚠️ {formStatus.error}
               </div>
             )}
-
             {formStatus.submitted && (
               <div className="success-message">
-                ✅ Registration submitted successfully! Our team will contact you within 24 hours.
+                ✅ Registration submitted successfully! Our team will contact
+                you within 24 hours.
               </div>
             )}
 
@@ -375,7 +422,7 @@ const DriverReg = () => {
               className="submit-btn"
               disabled={formStatus.loading}
             >
-              {formStatus.loading ? 'Registering...' : 'Register Now'}
+              {formStatus.loading ? "Registering..." : "Register Now"}
             </button>
           </form>
         </div>
@@ -391,7 +438,10 @@ const DriverReg = () => {
             <li>✓ Dedicated account manager</li>
           </ul>
           <div className="benefits-note">
-            <p>&#128222; Have questions? Call us: <strong>+92 (123) 456-7890</strong></p>
+            <p>
+              &#128222; Have questions? Call us:{" "}
+              <strong>+92 (123) 456-7890</strong>
+            </p>
           </div>
         </div>
       </section>
