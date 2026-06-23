@@ -407,12 +407,12 @@ const DriverReg = () => {
                   border: "1px solid #f5c6cb",
                 }}
               >
-                ⚠️ {formStatus.error}
+                &#9888; {formStatus.error}
               </div>
             )}
             {formStatus.submitted && (
               <div className="success-message">
-                ✅ Registration submitted successfully! Our team will contact
+                &#9989; Registration submitted successfully! Our team will contact
                 you within 24 hours.
               </div>
             )}
