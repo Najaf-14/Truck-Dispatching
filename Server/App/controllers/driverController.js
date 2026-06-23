@@ -1,6 +1,7 @@
 const Driver = require("../models/Driver");
 
 const registerDriver = async (req, res) => {
+  console.log("Body : ", req.body)
   try {
     const {
       fullName,
