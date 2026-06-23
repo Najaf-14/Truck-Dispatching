@@ -21,6 +21,8 @@ app.use("/api/auth", require("./routes/authRoutes"));
 
 app.use("/api/contact", require("./routes/contactRoutes"));
 
+app.use("/api/driverform", require("./routes/driverRoutes"))
+
 app.listen(process.env.PORT, () => {
   console.log("Server running at port", process.env.PORT);
 });
