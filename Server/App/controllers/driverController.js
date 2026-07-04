@@ -74,25 +74,77 @@ const registerDriver = async (req, res) => {
 
 const getAllDrivers = async (req, res) => {
   try {
-    const drivers = await Driver.find().sort({createdAt: -1})
+    const drivers = await Driver.find().sort({ createdAt: -1 });
 
-    if(!drivers){
-      res.status(404).json({
-        success: false,
-        message: "Drivers not found"
-      })
-    }
     res.status(200).json({
       success: true,
       message: "All Drivers",
-      drivers
-    })
+      drivers,
+    });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: e.message,
+      message: error.message,
     });
   }
 };
 
-module.exports = { registerDriver, getAllDrivers };
+const editDriver = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const driver = await Driver.findById(id);
+
+    if (!driver) {
+      return res.status(404).json({
+        success: false,
+        message: "Driver not found",
+      });
+    }
+
+    const updatedDriver = await Driver.findByIdAndUpdate(id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Driver updated successfully",
+      driver: updatedDriver,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+const deleteDriver = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const driver = await Driver.findById(id);
+
+    if (!driver) {
+      return res.status(404).json({
+        success: false,
+        message: "Driver not found",
+      });
+    }
+
+    await Driver.findByIdAndDelete(id);
+
+    res.status(200).json({
+      success: true,
+      message: "Driver deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+module.exports = { registerDriver, getAllDrivers, editDriver, deleteDriver };
