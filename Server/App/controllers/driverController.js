@@ -1,7 +1,7 @@
 const Driver = require("../models/Driver");
 
 const registerDriver = async (req, res) => {
-  console.log("Body : ", req.body)
+  console.log("Body : ", req.body);
   try {
     const {
       fullName,
@@ -72,4 +72,27 @@ const registerDriver = async (req, res) => {
   }
 };
 
-module.exports = { registerDriver };
+const getAllDrivers = async (req, res) => {
+  try {
+    const drivers = await Driver.find().sort({createdAt: -1})
+
+    if(!drivers){
+      res.status(404).json({
+        success: false,
+        message: "Drivers not found"
+      })
+    }
+    res.status(200).json({
+      success: true,
+      message: "All Drivers",
+      drivers
+    })
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: e.message,
+    });
+  }
+};
+
+module.exports = { registerDriver, getAllDrivers };
