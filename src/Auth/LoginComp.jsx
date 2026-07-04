@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./LoginComp.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function LoginComp() {
   const [email, setEmail] = useState("");
@@ -12,8 +13,9 @@ function LoginComp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+
     setLoading(true);
+    setError("");
 
     try {
       const res = await axios.post("http://localhost:5000/api/auth/login", {
@@ -24,14 +26,18 @@ function LoginComp() {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
-      if (res.data.user.role === 'admin') {
-        navigate("/admin")
+      toast.success(res.data.message);
+
+      if (res.data.user.role === "admin") {
+        navigate("/admin");
       } else {
         navigate("/");
       }
-    } catch (e) {
-      console.log("Error: ", e);
-      setError(e.response?.data?.message || "Something went wrong");
+    } catch (error) {
+      const message = error.response?.data?.message || "Something went wrong";
+
+      toast.error(message);
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -44,7 +50,7 @@ function LoginComp() {
           <h2>Welcome Back</h2>
           <p>Login to your Loadify account</p>
         </div>
-        
+
         {error && <div className="error-message">{error}</div>}
 
         <form onSubmit={handleSubmit} className="login-form">
