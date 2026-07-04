@@ -12,8 +12,8 @@ router.post("/register", registerDriver);
 
 router.get("/all", getAllDrivers);
 
-router.get("/update/:id", editDriver);
+router.put("/update/:id", editDriver);
 
-router.get("/delete/:id", deleteDriver);
+router.delete("/delete/:id", deleteDriver);
 
 module.exports = router;
