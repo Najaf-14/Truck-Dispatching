@@ -97,7 +97,7 @@ Make sure the following are installed on your machine:
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/Najaf-14/Truck-Dispatching.git
 cd truck-dispatching
 ```
 
