@@ -50,7 +50,8 @@ const login = async (req, res) => {
 
     if (!email || !password) {
       return res.status(400).json({
-        message: "All fields required",
+        success: false,
+        message: "All fields are required",
       });
     }
 
@@ -58,6 +59,7 @@ const login = async (req, res) => {
 
     if (!user) {
       return res.status(404).json({
+        success: false,
         message: "User not found",
       });
     }
@@ -65,7 +67,8 @@ const login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      return res.status(400).json({
+      return res.status(401).json({
+        success: false,
         message: "Invalid password",
       });
     }
@@ -78,11 +81,12 @@ const login = async (req, res) => {
       process.env.JWT_SECRET,
       {
         expiresIn: "7d",
-      },
+      }
     );
 
-    res.status(200).json({
-      message: "Login Successful",
+    return res.status(200).json({
+      success: true,
+      message: "Login successful",
       token,
       user: {
         id: user._id,
@@ -91,11 +95,15 @@ const login = async (req, res) => {
         role: user.role,
       },
     });
-  } catch (e) {
-    console.log("Error: ", e);
+  } catch (error) {
+    console.error("Login Error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
   }
 };
-
 const manageUsers = async (req, res) => {
   try {
     const users = await User.find({}, "-password");
